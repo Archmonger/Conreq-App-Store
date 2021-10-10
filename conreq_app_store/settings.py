@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "conreq_app_store.internal.base",
     "conreq_app_store.internal.app_store",
+    "conreq_app_store.internal.home",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

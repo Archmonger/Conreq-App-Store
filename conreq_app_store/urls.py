@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path("", include("conreq_app_store.internal.app_store.urls")),
+    path("", include("conreq_app_store.internal.home.urls")),
     path("admin/", admin.site.urls),
 ]
