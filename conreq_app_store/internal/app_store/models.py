@@ -18,8 +18,8 @@ class DevelopmentStage(models.TextChoices):
 
 
 class AsyncCompatibility(models.TextChoices):
-    NONE = "NONE", "No Async"
-    SEMI = "SEMI", "Semi Async"
+    NONE = "NONE", "Not Async"
+    SEMI = "SEMI", "Partially Async"
     FULL = "FULL", "Fully Async"
 
 
@@ -87,7 +87,7 @@ class Subcategory(models.Model):
     tracker = FieldTracker()
 
 
-class AppPackage(models.Model):
+class ConreqPackage(models.Model):
     def __str__(self):
         return self.name
 
@@ -121,6 +121,7 @@ class AppPackage(models.Model):
     support_url = models.URLField(blank=True, null=True)
     donation_url = models.URLField(blank=True, null=True)
     pypi_url = models.URLField(blank=True, null=True)
+    license_url = models.URLField(blank=True, null=True)
     license_type = models.CharField(
         max_length=20,
         choices=LicenseTypes.choices,
@@ -142,9 +143,9 @@ class AppPackage(models.Model):
     )
 
     # App Dependencies
-    required_app_packages = models.ManyToManyField("self", blank=True)
-    optional_app_packages = models.ManyToManyField("self", blank=True)
-    incompatible_app_packages = models.ManyToManyField("self", blank=True)
+    required_conreq_packages = models.ManyToManyField("self", blank=True)
+    optional_conreq_packages = models.ManyToManyField("self", blank=True)
+    incompatible_conreq_packages = models.ManyToManyField("self", blank=True)
     incompatible_categories = models.ManyToManyField(
         Category, related_name="incompatible_categories", blank=True
     )
@@ -165,7 +166,7 @@ class EnvironmentVariable(models.Model):
     required = models.BooleanField(default=False)
     default_value = models.CharField(max_length=255, blank=True, null=True)
     example_values = models.CharField(max_length=255, blank=True, null=True)
-    app_package = models.ForeignKey(AppPackage, on_delete=models.CASCADE)
+    conreq_package = models.ForeignKey(ConreqPackage, on_delete=models.CASCADE)
 
 
 class Screenshot(models.Model):
@@ -176,7 +177,7 @@ class Screenshot(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to="app_store/screenshot/")
-    app_package = models.ForeignKey(AppPackage, on_delete=models.CASCADE)
+    conreq_package = models.ForeignKey(ConreqPackage, on_delete=models.CASCADE)
 
 
 class NoticeMessage(models.Model):
@@ -186,4 +187,4 @@ class NoticeMessage(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=100)
     message = models.TextField()
-    app_package = models.ForeignKey(AppPackage, on_delete=models.CASCADE)
+    conreq_package = models.ForeignKey(ConreqPackage, on_delete=models.CASCADE)

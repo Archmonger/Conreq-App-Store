@@ -14,7 +14,7 @@ class AppSubCategories(admin.ModelAdmin):
     pass
 
 
-@admin.register(models.AppPackage)
+@admin.register(models.ConreqPackage)
 class Apps(admin.ModelAdmin):
     pass
 
