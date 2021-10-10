@@ -89,7 +89,7 @@ class Subcategory(models.Model):
 
 class AppPackage(models.Model):
     def __str__(self):
-        return self.verbose_name
+        return self.name
 
     # Unique Identifier
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
