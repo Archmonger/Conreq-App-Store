@@ -1,0 +1,11 @@
+django==3.2.7
+django-cleanup==5.2.0
+pillow==8.3.2
+django-multiselectfield==0.1.12
+django-versionfield==1.0.2
+django-model-utils==4.1.1
+black
+pylint
+rope
+pylint_django
+twine
