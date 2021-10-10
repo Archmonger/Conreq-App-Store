@@ -30,7 +30,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "conreq_app_store.internal.base",
     "conreq_app_store.internal.app_store",
-    "conreq_app_store.internal.home",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -40,6 +39,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "conreq_app_store.internal.base.middleware.AlwaysAdmin",
 ]
 ROOT_URLCONF = "conreq_app_store.urls"
 TEMPLATES = [
