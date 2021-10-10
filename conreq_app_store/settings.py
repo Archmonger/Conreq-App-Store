@@ -10,11 +10,22 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 from django.core.management.utils import get_random_secret_key
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_DIR = BASE_DIR / "data"
+MEDIA_DIR = DATA_DIR / "media"
+MAKE_DIRS = [
+    DATA_DIR,
+    MEDIA_DIR,
+]
+for directory in MAKE_DIRS:
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
 SECRET_KEY = get_random_secret_key()
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
@@ -31,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "conreq_app_store.internal.base",
     "conreq_app_store.internal.app_store",
+    "django_cleanup.apps.CleanupConfig",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -66,7 +78,7 @@ WSGI_APPLICATION = "conreq_app_store.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": DATA_DIR / "db.sqlite3",
     }
 }
 
@@ -84,3 +96,7 @@ STATIC_URL = "/static/"
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Media Files
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = "media/"
