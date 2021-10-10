@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-import os
 from pathlib import Path
 
 from django.core.management.utils import get_random_secret_key
@@ -23,8 +22,8 @@ MAKE_DIRS = [
     MEDIA_DIR,
 ]
 for directory in MAKE_DIRS:
-    if not os.path.exists(directory):
-        os.makedirs(directory)
+    if not directory.exists():
+        directory.mkdir(parents=True)
 
 SECRET_KEY = get_random_secret_key()
 DEBUG = True
