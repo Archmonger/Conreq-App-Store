@@ -95,8 +95,7 @@ class AppPackage(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     # Basic Info
-    package_name = models.CharField(max_length=100, help_text="Must be snake_case.")
-    verbose_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     short_description = models.CharField(max_length=255, blank=True, null=True)
     long_description = models.FileField(upload_to="app_store/readme/")
     long_description_type = models.CharField(
