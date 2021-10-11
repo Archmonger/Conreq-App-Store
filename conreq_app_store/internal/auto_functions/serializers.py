@@ -11,7 +11,7 @@ MODELS_DIR = getattr(settings, "MODELS_DIR")
 
 
 def serialize_model(model):
-    data = serialize("json", model.objects.all())
+    data = serialize("json", model.objects.all(), indent=2)
     with open(MODELS_DIR / f"{model.__name__}.json", "w", encoding="utf-8") as fp:
         fp.write(data)
 
