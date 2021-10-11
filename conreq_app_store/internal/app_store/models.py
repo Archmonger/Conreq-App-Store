@@ -1,7 +1,6 @@
 import uuid
 
 from django.db import models
-from model_utils import FieldTracker
 from multiselectfield import MultiSelectField
 from PIL import Image
 from versionfield import VersionField
@@ -31,9 +30,6 @@ class Category(models.Model):
     short_description = models.CharField(max_length=100, blank=True, null=True)
     long_description = models.TextField(blank=True, null=True)
 
-    # Tracker
-    tracker = FieldTracker()
-
 
 class Subcategory(models.Model):
     def __str__(self):
@@ -48,9 +44,6 @@ class Subcategory(models.Model):
     short_description = models.CharField(max_length=100, blank=True, null=True)
     long_description = models.TextField(blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
-    # Tracker
-    tracker = FieldTracker()
 
 
 class ConreqPackage(models.Model):
@@ -97,7 +90,7 @@ class ConreqPackage(models.Model):
     )
 
     # Compatibility
-    sys_platforms = MultiSelectField(choices=SysPlatforms.choices, max_length=50)
+    system_platforms = MultiSelectField(choices=SysPlatforms.choices, max_length=50)
     desktop_compatible = models.BooleanField()
     touch_compatible = models.BooleanField()
     mobile_compatible = models.BooleanField()
@@ -121,13 +114,10 @@ class ConreqPackage(models.Model):
         Subcategory, related_name="incompatible_subcategories", blank=True
     )
 
-    # Tracker
-    tracker = FieldTracker()
-
 
 class EnvironmentVariable(models.Model):
     def __str__(self):
-        return self.name + ' = "' + str(self.default_value) + '"'
+        return f"{self.name} = {self.default_value}"
 
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=50)
