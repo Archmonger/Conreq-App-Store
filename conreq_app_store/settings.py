@@ -17,9 +17,11 @@ from django.core.management.utils import get_random_secret_key
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 MEDIA_DIR = DATA_DIR / "media"
+MODELS_DIR = DATA_DIR / "models"
 MAKE_DIRS = [
     DATA_DIR,
     MEDIA_DIR,
+    MODELS_DIR,
 ]
 for directory in MAKE_DIRS:
     if not directory.exists():
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "conreq_app_store.internal.base",
     "conreq_app_store.internal.app_store",
+    "conreq_app_store.internal.auto_functions",
     "django_cleanup.apps.CleanupConfig",
 ]
 MIDDLEWARE = [

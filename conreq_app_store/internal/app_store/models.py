@@ -15,8 +15,6 @@ from .choices import (
 from .helpers import readme_path, screenshots_path
 from .validators import readme_extension_validator
 
-# TODO: Add on_save behavior to serialize this data into json
-
 
 class Category(models.Model):
     def __str__(self):
