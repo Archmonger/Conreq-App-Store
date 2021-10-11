@@ -12,6 +12,8 @@ from .choices import (
     LicenseTypes,
     SysPlatforms,
 )
+from .helpers import readme_path, screenshots_path
+from .validators import readme_extension_validator
 
 # TODO: Add on_save behavior to serialize this data into json
 
@@ -60,7 +62,9 @@ class ConreqPackage(models.Model):
     # Basic Info
     name = models.CharField(max_length=100)
     short_description = models.CharField(max_length=255, blank=True, null=True)
-    long_description = models.FileField(upload_to="app_store/readme/")
+    long_description = models.FileField(
+        upload_to=readme_path, validators=[readme_extension_validator]
+    )
     long_description_type = models.CharField(
         max_length=20,
         choices=DescriptionTypes.choices,
@@ -92,7 +96,7 @@ class ConreqPackage(models.Model):
     )
 
     # Compatibility
-    sys_platforms = MultiSelectField(choices=SysPlatforms.choices, max_length=10)
+    sys_platforms = MultiSelectField(choices=SysPlatforms.choices, max_length=50)
     desktop_compatible = models.BooleanField()
     touch_compatible = models.BooleanField()
     mobile_compatible = models.BooleanField()
@@ -139,7 +143,7 @@ class Screenshot(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=255, blank=True, null=True)
-    image = models.ImageField(upload_to="app_store/screenshot/")
+    image = models.ImageField(upload_to=screenshots_path)
     conreq_package = models.ForeignKey(ConreqPackage, on_delete=models.CASCADE)
 
 
