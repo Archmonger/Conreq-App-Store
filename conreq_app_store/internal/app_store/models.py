@@ -68,18 +68,21 @@ class ConreqPackage(models.Model):
         choices=DevelopmentStage.choices,
         default=DevelopmentStage.PREALPHA,
     )
-    version = VersionField(default="0.0.1")
     banner_message = models.TextField(blank=True, null=True)
 
     # Ownership Info
-    author = models.CharField(max_length=50)
+    author_name = models.CharField(max_length=50)
     author_email = models.EmailField(blank=True, null=True)
     author_url = models.URLField(blank=True, null=True)
-    repository_url = models.URLField()
+    repository_url = models.URLField(
+        help_text="If not using PyPi, then tagged releases are mandatory."
+    )
     homepage_url = models.URLField(blank=True, null=True)
     support_url = models.URLField(blank=True, null=True)
     donation_url = models.URLField(blank=True, null=True)
-    pypi_url = models.URLField(blank=True, null=True)
+    pypi_url = models.URLField(
+        blank=True, null=True, help_text="Releases are pulled from PyPi by default."
+    )
     license_url = models.URLField(blank=True, null=True)
     license_type = models.CharField(
         max_length=20,

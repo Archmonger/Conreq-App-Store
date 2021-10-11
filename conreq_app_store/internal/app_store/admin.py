@@ -18,14 +18,14 @@ class AppSubCategories(admin.ModelAdmin):
 
 @admin.register(models.ConreqPackage)
 class Apps(admin.ModelAdmin):
-    list_display = ["name", "version", "development_stage", "author"]
-    list_editable = ["version", "development_stage"]
+    list_display = ["name", "development_stage", "author_name"]
+    list_editable = ["development_stage"]
     search_fields = [
         "name",
         "short_description",
         "long_description",
         "subcategories",
-        "author",
+        "author_name",
         "author_email",
         "author_url",
         "repository_url",
@@ -38,7 +38,7 @@ class Apps(admin.ModelAdmin):
         "optional_conreq_packages",
     ]
     list_filter = [
-        "author",
+        "author_name",
         "system_platforms",
         "desktop_compatible",
         "touch_compatible",
