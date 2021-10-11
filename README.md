@@ -9,7 +9,7 @@ This repo is used to add and save Conreq Community App Store listings. You can c
     -   Easiest if this is the only version of python on your computer
 -   _Optional_: Install [Visual Studio Code](https://code.visualstudio.com/) (Suggested, but any editor would work)
 
-## Installing the App Store Manager
+## Installing and Running the App Store Manager
 
 1. Pull the repository from GitHub.
 2. Open a terminal (ex. Command Prompt or PowerShell) as administrator at the root of the repository.
