@@ -3,6 +3,7 @@ import uuid
 from django.db import models
 from model_utils import FieldTracker
 from multiselectfield import MultiSelectField
+from PIL import Image
 from versionfield import VersionField
 
 from .choices import (
@@ -145,6 +146,11 @@ class Screenshot(models.Model):
     description = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to=screenshots_path)
     conreq_package = models.ForeignKey(ConreqPackage, on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        image = Image.open(self.image.path)
+        image.save(self.image.path, quality=35, optimize=True)
 
 
 class NoticeMessage(models.Model):
