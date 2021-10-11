@@ -61,7 +61,7 @@ class EnvironmentVariables(admin.ModelAdmin):
 
 @admin.register(models.Screenshot)
 class Screenshots(admin.ModelAdmin):
-    list_display = ["title", "uuid", "conreq_package"]
+    list_display = ["title", "conreq_package"]
     search_fields = ["title", "description", "conreq_package"]
     list_filter = ["conreq_package"]
 
