@@ -8,4 +8,9 @@ class AutoFunctionsConfig(AppConfig):
     name = APP
 
     def ready(self):
+        # pylint: disable=import-outside-toplevel, unused-import
+        from .deserializers import deserialize_all
+
+        deserialize_all()
+
         from . import serializers
