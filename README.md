@@ -1,4 +1,4 @@
-# Conreq-App-Store
+# Conreq App Store Manager
 
 This repo is used to add and save Conreq Community App Store listings. You can clone this repo to run the App Store Manager to add new listings. Create a pull request to save your changes to this repository.
 
