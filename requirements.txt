@@ -1,6 +1,6 @@
 django==3.2.7
 django-cleanup==5.2.0
-pillow==8.3.2
+pillow==9.0.0
 django-multiselectfield==0.1.12
 django-versionfield==1.0.2
 bootstrap-admin==0.4.4
