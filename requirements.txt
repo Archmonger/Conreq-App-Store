@@ -1,4 +1,4 @@
-django==3.2.20
+django==3.2.23
 django-cleanup==5.2.0
 pillow==9.3.0
 django-multiselectfield==0.1.12
